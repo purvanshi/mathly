@@ -1,7 +1,7 @@
 iSolveMath
 **********
 
-**iSolveMath is a project which aims to solve and visualize Math Word Problems (MWPs).**
+**iSolveMath solves and visualizes Math Word Problems (MWPs).**
 
 
 .. contents:: *Contents of this document*
@@ -10,39 +10,42 @@ iSolveMath
 Introduction
 =============
 
-A student begins to solve Math Word Problems in the second grade, and these problems continue till the end of high school. Most students are unable to solve such problems, and rely on rote learning instead. We decided to tackle this common problem of word problems. 
+iSolveMath is a platform where a student can enter a maths word problem, get an automatic answer and visual explanation generated of both the question and the answer.
 
-A lot of research has been done in this field, but most research is concentrated on the simpler problems of 2nd grade (junior school level), such as addition. 
-
-iSolveMath aims to solve problems up to 6th grade (middle school level), which include:
-
-- Simple Interest (S.I.)
-- Profit & Loss
-- Work
-- Speed, Distance & Time
-- Unitary Method
-- Single and Multi-step Addition, Subtraction, Multiplication and Division
-
-We also aim to encourage further research in this area.
+Inspiration
+===========
+A student begins to solve Word Problems in the second grade, and these problems continue till the end of high school. Most students are unable to visualise such problems, and rely on rote learning instead.Finally developing a hatered towards the subject. 
 
 Approach
-===========
+========
+The system at present solves starightforward simple interest problems like-
 
-We decided on the following approach, which is used instinctively by students, and is also detailed in numerous research papers:
+1.How much time will it take for an amount of $900 to yield $81 as interest at 4.5% per annum of simple interest?
+2.If Manohar pays an interest of $750 for 2 years on a sum of $4,500, find the rate of interest.
+3.Sahil took a loan for 6 years at the rate of 5% per annum on Simple Interest, If the total interest paid was $1230, Find the principal.
 
-- Classification: In this step, we will classify the problem and assign to it its category. This is performed by a classifier, which uses `SVM <https://en.wikipedia.org/wiki/Support_vector_machine>`_.
-- Extraction of unknown quantities: In this step, we will find the unknown quantity (the values to be found). Suppose a person enters a question as "John invested $500 in a bank at the rate of 5 p.a. Find the simple interest incurred in one year." Then, the unknown quantity / question to be extracted is "Find the S.I. …" This task is accomplished by POS Tagging and Wh-word (or question words, such as who, what etc.) recognition.
-- Extraction of known quantities: In this step, we will find the known quantities (the quantities which are surreptitiously mentioned in the question). For the same example above, the known quantities extracted are "Principal = $500", "Rate = 5", and "Time = 1". This task is accomplished by NER Tagging.
-- Generation of answer: Each basic word problem can be classified into subcategories. For example, SI problems can be divided into:
+The process takes place as follows-
+- Finding the question part and classifying into what is unknown.
+- Finding the known quantities with the help of NER tagging and classification of money tag into simple interest, amount or    principal.
+- Formula call and return of answer.
+Each basic word problem can be classified into subcategories. For example, SI problems can be divided into:
   
   1. Finding a quantity when three others are given. 
-  2. Finding amount.
-  3. Investment of parts (example - splitting investment into two parts, and finding the cumulative interest after a year). This also includes profit sharing.
+  2. Investment of parts (example - splitting investment into two parts, and finding the cumulative interest after a year). This also includes profit sharing.
 
-  This task will call the function according to the subcategory found using previous steps.
+Current Work and research
+=========================
+The code at present is highly domain specific. To make it more generic, we have decided to solve word problems from basic. At present we are working on 4 basic operation problems(single and multistep). For better accuracies we will use deep neural networks to train our data.
 
-Alternatives
-============
+Who can contribute
+==================
+-Researchers - People who want to challenge the current accuracies of present maths word problem solvers, or extend the research in this field to higher level and complex problems and who love to play with the language(natural language processing).
+-Developers - We beleieve in building something which can be used by someone directly. Bridging the gap between research and develepment work, iSolveMath is a platform which involves both development and research work.
+-ANYONE WHO LOVES MATHS AND BELIEVES EVERYONE ELSE SHOULD LOVE IT TOO.
+
+
+Alternatives currently available in maths word problem solving
+==============================================================
 
 The following alternatives already exist, but they perform to a limited capacity:
 
@@ -58,8 +61,3 @@ The following alternatives already exist, but they perform to a limited capacity
   For example, consider the question "Each pencil costs $9.00. How much do 4 pencils cost?". Euclid is not able to parse such short questions, since it is cannot extract the unknown quantity (which is the cost) and a fact (which is the number of pencils) from the same sentence. Euclid expects the question to have been something like this "Each pencil costs $9. 4 pencils were brought. What is the total cost?"
 
 - Online material - This is a double-edged sword. On one hand, you have seemingly *humongous* amounts of information, so large that you cannot even begin to comprehend it. On the other hand, the sheer information available at your fingertips is daunting - you don't know where to start or end, you don't know which site to trust (web security is a real concern), and the content is often hidden behind paywalls.
-
-Conclusion
-==========
-
-We hope that this project will help reduce the hardships and angst that students face because of Math. We also hope that researchers and programmers will take our project (and the subcategory of Math Word Problems) and advance it even further.
